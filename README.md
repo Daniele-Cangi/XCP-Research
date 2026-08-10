@@ -1,6 +1,8 @@
 # XCP Research Evidence
 
-XCP Research is a compact, public evidence surface for one bounded experiment. It shows how an authorized source observation, a constrained target observation, and a differential decision can be bound and checked without publishing the private transformation mechanism between them.
+XCP Research is the public evidence surface of [XCP Studio](https://xcpstudio.com/), a broader private research and engineering system exploring source-to-target adaptation, AI-assisted software creation, and measured execution on constrained Xbox Series hardware.
+
+This repository publishes selected historical evidence, verification contracts, and bounded research snapshots from that work. The active transformation system, target-generation machinery, and research frontier remain private.
 
 The publication rule is simple: **publish the proof boundary, not the implementation boundary**.
 
@@ -47,6 +49,8 @@ BOUNDED EVIDENCE DECISION
 ```
 
 The private block is deliberate. This repository describes what crosses the boundary and how published evidence is checked, not how source behavior is interpreted or transformed.
+
+For the broader system context, see [xcpstudio.com](https://xcpstudio.com/).
 
 ## Verify offline
 
