@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="280" viewBox="0 0 1200 280" role="img" aria-labelledby="title desc">
+  <title id="title">Public XCP evidence boundary</title>
+  <desc id="desc">Authorized source evidence crosses an opaque private transformation boundary to target execution and a bounded evidence decision.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="280" fill="#f8fafc"/>
+  <g font-family="system-ui, sans-serif" text-anchor="middle">
+    <rect x="40" y="90" width="180" height="90" rx="10" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+    <text x="130" y="125" font-size="18" font-weight="700" fill="#0c4a6e">AUTHORIZED</text>
+    <text x="130" y="151" font-size="18" font-weight="700" fill="#0c4a6e">SOURCE EVIDENCE</text>
+
+    <rect x="290" y="70" width="260" height="130" rx="10" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+    <text x="420" y="122" font-size="19" font-weight="700" fill="#f8fafc">PRIVATE XCP</text>
+    <text x="420" y="150" font-size="19" font-weight="700" fill="#f8fafc">TRANSFORMATION</text>
+    <text x="420" y="178" font-size="13" fill="#cbd5e1">intentionally opaque</text>
+
+    <rect x="620" y="90" width="180" height="90" rx="10" fill="#ecfccb" stroke="#4d7c0f" stroke-width="2"/>
+    <text x="710" y="125" font-size="18" font-weight="700" fill="#365314">TARGET</text>
+    <text x="710" y="151" font-size="18" font-weight="700" fill="#365314">EVIDENCE</text>
+
+    <rect x="870" y="90" width="280" height="90" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <text x="1010" y="125" font-size="18" font-weight="700" fill="#78350f">BOUNDED EVIDENCE</text>
+    <text x="1010" y="151" font-size="18" font-weight="700" fill="#78350f">DECISION</text>
+  </g>
+  <g stroke="#475569" stroke-width="3" fill="none" marker-end="url(#arrow)">
+    <path d="M220 135 H285"/>
+    <path d="M550 135 H615"/>
+    <path d="M800 135 H865"/>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="13" fill="#475569" text-anchor="middle">
+    <text x="255" y="120">bind</text>
+    <text x="585" y="120">execute</text>
+    <text x="835" y="120">compare</text>
+  </g>
+</svg>

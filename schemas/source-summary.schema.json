@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:xcp-research:source-summary:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "snapshot_id", "scenario_id", "phase", "scenario_sha256", "source"],
+  "properties": {
+    "schema_version": {"const": "xcp-research-source-summary-v1"},
+    "snapshot_id": {"type": "string"},
+    "scenario_id": {"type": "string"},
+    "phase": {"enum": ["calibration", "validation", "holdout"]},
+    "scenario_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "authorization_basis", "revision", "observation_status", "trace_sha256"],
+      "properties": {
+        "project": {"type": "string"},
+        "authorization_basis": {"const": "open-source license"},
+        "revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "observation_status": {"const": "complete_for_scenario"},
+        "trace_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

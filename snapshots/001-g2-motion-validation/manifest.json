@@ -1,0 +1,32 @@
+{
+  "schema_version": "xcp-research-evidence-manifest-v1",
+  "snapshot_id": "001-g2-motion-validation",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1167,
+      "sha256": "2d71bba1f7d73c631d6d9f14b6b5be479e09cf9d2c7b079d381bc8248834a702"
+    },
+    {
+      "path": "architecture.svg",
+      "bytes": 2329,
+      "sha256": "17e1b87a6111edece7d22d4d538b28d2ec92ddb391c815375b96a149da7cb036"
+    },
+    {
+      "path": "source-summary.json",
+      "bytes": 544,
+      "sha256": "43c905b17130ce7d111aaa242cd626569eecfbed9e8daf39026990f3e076c399"
+    },
+    {
+      "path": "target-summary.json",
+      "bytes": 1027,
+      "sha256": "72411bb901d0bc0b511e1f8618720fbe8ac8dfb72df8f63fd00b8e0fa89f54dc"
+    },
+    {
+      "path": "differential-report.json",
+      "bytes": 2047,
+      "sha256": "f86191c17dd9bd2d2870b1f7b2abaf7a9b0de7b4a582136b280409b04c4270c9"
+    }
+  ],
+  "manifest_sha256": "31e8e5014c481967ef4562c4e6c8dc06f077ebed9ba38ea57f23bcbd65b381ee"
+}

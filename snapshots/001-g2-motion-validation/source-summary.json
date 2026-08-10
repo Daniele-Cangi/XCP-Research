@@ -1,0 +1,14 @@
+{
+  "schema_version": "xcp-research-source-summary-v1",
+  "snapshot_id": "001-g2-motion-validation",
+  "scenario_id": "movement-left",
+  "phase": "validation",
+  "scenario_sha256": "d6d27b88600dce0b0e6e0baec9bb6c2a9969064d7822f4ac1f8929fb32653d30",
+  "source": {
+    "project": "Minilens",
+    "authorization_basis": "open-source license",
+    "revision": "fd38f0983f9115ac9fe7a7314604fdeee61e9f09",
+    "observation_status": "complete_for_scenario",
+    "trace_sha256": "528de3f6efd8fb5cfe502f1fb801aca484cb38213a338b2b315470fffb863c15"
+  }
+}
