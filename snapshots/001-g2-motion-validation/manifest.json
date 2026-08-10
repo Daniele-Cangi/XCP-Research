@@ -24,9 +24,9 @@
     },
     {
       "path": "differential-report.json",
-      "bytes": 2047,
-      "sha256": "f86191c17dd9bd2d2870b1f7b2abaf7a9b0de7b4a582136b280409b04c4270c9"
+      "bytes": 1876,
+      "sha256": "14af947a5739940ee369a4b74b2c5dd347b74d5f7a07c259d8a2b5f43615c727"
     }
   ],
-  "manifest_sha256": "31e8e5014c481967ef4562c4e6c8dc06f077ebed9ba38ea57f23bcbd65b381ee"
+  "manifest_sha256": "74a96375a57a4250aba57f5fe7b60d6b7ffcfd40f26529a87de32900a1974da0"
 }
