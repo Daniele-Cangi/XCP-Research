@@ -4,6 +4,12 @@ XCP Research is a compact, public evidence surface for one bounded experiment. I
 
 The publication rule is simple: **publish the proof boundary, not the implementation boundary**.
 
+## Snapshot overview
+
+![Scientific overview of the XCP Studio bounded validation pipeline](assets/xcp-studio-validation-overview.svg)
+
+Public evidence surface for bounded source-to-target validation.
+
 ## Snapshot 001
 
 The first snapshot records the historical `movement-left` validation scenario from a three-scenario motion study:
