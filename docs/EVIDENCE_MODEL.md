@@ -8,11 +8,11 @@ The source summary identifies the authorized external revision, the scenario par
 
 ## Target summary
 
-The target summary binds the same scenario and source-trace identity to an opaque target project identity, worker artifact identity, lifecycle receipt identity, target-observation identity, and canonical target trace identity. It contains no package, protocol, capability-list, or worker implementation details.
+The target summary binds the same scenario and source-trace identity to opaque target execution identities and the canonical target trace identity. It contains no package, protocol, capability-list, transformation structure, or worker implementation details.
 
 ## Differential report
 
-The differential report binds the scenario, source trace, target trace, historical report, and root-cause evidence identities. It publishes only aggregate invariant counts, the measured trajectory delta, tolerance authority, classification, and bounded decision.
+The differential report binds the scenario, source trace, target trace, and historical report identities. It publishes only aggregate invariant counts, the measured trajectory delta, tolerance authority, a sanitized classification, and the bounded decision.
 
 ## Manifest
 
