@@ -3,112 +3,225 @@
   "$id": "urn:xcp-research:differential-report:v1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "snapshot_id", "scenario_id", "phase", "identities", "measurement", "interpretation", "coverage", "decision", "historical_note"],
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "scenario_id",
+    "phase",
+    "identities",
+    "measurement",
+    "interpretation",
+    "coverage",
+    "decision",
+    "historical_note"
+  ],
   "properties": {
-    "schema_version": {"const": "xcp-research-differential-report-v1"},
-    "snapshot_id": {"type": "string"},
-    "scenario_id": {"type": "string"},
-    "phase": {"enum": ["calibration", "validation", "holdout"]},
+    "schema_version": {
+      "const": "xcp-research-differential-report-v1"
+    },
+    "snapshot_id": {
+      "type": "string"
+    },
+    "scenario_id": {
+      "type": "string"
+    },
+    "phase": {
+      "enum": [
+        "calibration",
+        "validation",
+        "holdout"
+      ]
+    },
     "identities": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["scenario_sha256", "source_trace_sha256", "target_trace_sha256", "historical_report_sha256", "root_cause_evidence_sha256"],
+      "required": [
+        "scenario_sha256",
+        "source_trace_sha256",
+        "target_trace_sha256",
+        "historical_report_sha256"
+      ],
       "properties": {
-        "scenario_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-        "source_trace_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-        "target_trace_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-        "historical_report_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-        "root_cause_evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        "scenario_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_trace_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "target_trace_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "historical_report_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
       }
     },
     "measurement": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["category", "published_decimal", "canonical_artifact_decimal", "unit", "tolerance", "significant"],
+      "required": [
+        "category",
+        "published_decimal",
+        "canonical_artifact_decimal",
+        "unit",
+        "tolerance",
+        "significant"
+      ],
       "properties": {
-        "category": {"const": "trajectory"},
-        "published_decimal": {"type": "string", "pattern": "^[0-9]+(?:\\.[0-9]+)?$"},
-        "canonical_artifact_decimal": {"type": "string", "pattern": "^[0-9]+(?:\\.[0-9]+)?$"},
-        "unit": {"const": "normalized_cell"},
+        "category": {
+          "const": "trajectory"
+        },
+        "published_decimal": {
+          "type": "string",
+          "pattern": "^[0-9]+(?:\\.[0-9]+)?$"
+        },
+        "canonical_artifact_decimal": {
+          "type": "string",
+          "pattern": "^[0-9]+(?:\\.[0-9]+)?$"
+        },
+        "unit": {
+          "const": "normalized_cell"
+        },
         "tolerance": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["kind", "maximum_decimal", "within_tolerance"],
+          "required": [
+            "kind",
+            "maximum_decimal",
+            "within_tolerance"
+          ],
           "properties": {
-            "kind": {"const": "absolute"},
-            "maximum_decimal": {"type": "string", "pattern": "^[0-9]+(?:\\.[0-9]+)?$"},
-            "within_tolerance": {"type": "boolean"}
+            "kind": {
+              "const": "absolute"
+            },
+            "maximum_decimal": {
+              "type": "string",
+              "pattern": "^[0-9]+(?:\\.[0-9]+)?$"
+            },
+            "within_tolerance": {
+              "type": "boolean"
+            }
           }
         },
-        "significant": {"type": "boolean"}
+        "significant": {
+          "type": "boolean"
+        }
       }
     },
     "interpretation": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["classification", "diagnostic_gates"],
+      "required": [
+        "classification"
+      ],
       "properties": {
-        "classification": {"const": "runtime_response_difference"},
-        "diagnostic_gates": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["passed", "total"],
-          "properties": {
-            "passed": {"type": "integer", "minimum": 0},
-            "total": {"type": "integer", "minimum": 1}
-          }
+        "classification": {
+          "const": "runtime_response_difference"
         }
       }
     },
     "coverage": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["scenario_hard_invariants", "scenario_perceptual_invariants", "motion_triad_hard_invariants", "motion_triad_perceptual_invariants"],
+      "required": [
+        "scenario_hard_invariants",
+        "scenario_perceptual_invariants",
+        "motion_triad_hard_invariants",
+        "motion_triad_perceptual_invariants"
+      ],
       "properties": {
-        "scenario_hard_invariants": {"$ref": "#/$defs/scenarioCoverage"},
-        "scenario_perceptual_invariants": {"$ref": "#/$defs/scenarioCoverage"},
-        "motion_triad_hard_invariants": {"$ref": "#/$defs/contractCoverage"},
-        "motion_triad_perceptual_invariants": {"$ref": "#/$defs/contractCoverage"}
+        "scenario_hard_invariants": {
+          "$ref": "#/$defs/scenarioCoverage"
+        },
+        "scenario_perceptual_invariants": {
+          "$ref": "#/$defs/scenarioCoverage"
+        },
+        "motion_triad_hard_invariants": {
+          "$ref": "#/$defs/contractCoverage"
+        },
+        "motion_triad_perceptual_invariants": {
+          "$ref": "#/$defs/contractCoverage"
+        }
       }
     },
     "decision": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["claim", "status", "global_equivalence", "reason_codes"],
+      "required": [
+        "claim",
+        "status",
+        "global_equivalence",
+        "reason_codes"
+      ],
       "properties": {
-        "claim": {"const": "bounded_scenario_result_supported"},
-        "status": {"const": "supported_within_declared_scope"},
-        "global_equivalence": {"const": "not_authorized"},
+        "claim": {
+          "const": "bounded_scenario_result_supported"
+        },
+        "status": {
+          "const": "supported_within_declared_scope"
+        },
+        "global_equivalence": {
+          "const": "not_authorized"
+        },
         "reason_codes": {
           "type": "array",
           "minItems": 3,
           "maxItems": 3,
           "uniqueItems": true,
           "items": {
-            "enum": ["measured_divergence_within_declared_tolerance", "scenario_evidence_complete", "global_coverage_incomplete"]
+            "enum": [
+              "measured_divergence_within_declared_tolerance",
+              "scenario_evidence_complete",
+              "global_coverage_incomplete"
+            ]
           }
         }
       }
     },
-    "historical_note": {"type": "string", "minLength": 1}
+    "historical_note": {
+      "type": "string",
+      "minLength": 1
+    }
   },
   "$defs": {
     "scenarioCoverage": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["passed", "evaluated"],
+      "required": [
+        "passed",
+        "evaluated"
+      ],
       "properties": {
-        "passed": {"type": "integer", "minimum": 0},
-        "evaluated": {"type": "integer", "minimum": 1}
+        "passed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evaluated": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "contractCoverage": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["covered", "contract"],
+      "required": [
+        "covered",
+        "contract"
+      ],
       "properties": {
-        "covered": {"type": "integer", "minimum": 0},
-        "contract": {"type": "integer", "minimum": 1}
+        "covered": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "contract": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     }
   }
