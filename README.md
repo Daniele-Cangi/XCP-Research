@@ -1,8 +1,8 @@
 # XCP Studio — Public Research Evidence
 
-**XCP Studio is a creative software system for building, adapting, running, and validating interactive software on Xbox Series hardware.**
+**XCP Studio is a software creation and source-to-target adaptation platform for Xbox Series hardware.**
 
-It connects PC-side creation and agent tooling to a bounded Xbox runtime. New work can begin from an idea or prompt; source-adaptation research can begin from authorized source software. XCP turns that input into an editable project, builds a deterministic runtime bundle, executes it on Xbox, observes what actually happened, and keeps the result versioned and reviewable.
+It supports two connected paths: creating new interactive software from an idea or prompt, and experimentally adapting authorized source software to a constrained Xbox runtime. In both cases, XCP turns the input into an editable project, builds a deterministic runtime bundle, executes the result on the target, observes what actually happened, and keeps the outcome measurable, versioned, and reversible.
 
 ```text
 IDEA / PROMPT / AUTHORIZED SOURCE SOFTWARE
@@ -31,7 +31,7 @@ IDEA / PROMPT / AUTHORIZED SOURCE SOFTWARE
 
 XCP is not just an Xbox compute probe and not just a verification format.
 
-The broader private system is being developed as a creative platform with a common project contract for people, visual tooling, IDE workflows, and external agents. That platform can:
+The active XCP system uses a common project contract across visual tools, IDE workflows, and external agents. It can:
 
 - create structured interactive software from an idea or prompt;
 - build deterministic, hash-bound project bundles;
