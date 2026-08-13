@@ -52,13 +52,13 @@ For the broader product context, see [xcpstudio.com](https://xcpstudio.com/).
 
 `XCP-Research` is the public evidence surface of XCP Studio. It is intentionally **not** a mirror of the private transformation engine or the current engineering frontier.
 
-This repository publishes selected historical evidence, verification contracts, sanitized measurements, and bounded research snapshots so that a public claim can be checked independently without publishing the machinery that produced the candidate target.
+This repository publishes selected historical evidence, verification contracts, sanitized measurements, and bounded research snapshots so that public results can be checked independently without publishing the machinery that produced the candidate target.
 
 The publication rule remains:
 
 > **publish the proof boundary, not the implementation boundary.**
 
-That means the public repository may lag behind the active private system. A snapshot proves only the scope declared by that snapshot; it should never be read as a claim that arbitrary software can already be translated automatically or that source and target are globally equivalent.
+Each snapshot declares its measured scope, evidence contract, and decision authority explicitly. The public evidence can therefore be inspected on its own terms even as the active private system continues to evolve.
 
 ## Source-to-target validation
 
@@ -88,13 +88,13 @@ AUTHORIZED SOURCE SOFTWARE
    BOUNDED EVIDENCE DECISION
 ```
 
-The private block may evolve. The public contract is about what enters the comparison, what evidence comes back from the target, and what conclusion that evidence is allowed to support.
+The private block may evolve. The public contract is about what enters the comparison, what evidence comes back from the target, and what conclusion that evidence supports.
 
 ## Snapshot 001 — measured motion preservation
 
 The first public snapshot records the historical `movement-left` validation scenario from a three-scenario motion study.
 
-It shows a small but concrete version of the XCP method: bind one source behavior and one target behavior to the same scenario, execute the target, measure both, and make a bounded decision from the observed divergence.
+It shows a concrete version of the XCP method: bind one source behavior and one target behavior to the same scenario, execute the target, measure both, and make a bounded decision from the observed divergence.
 
 For this snapshot:
 
@@ -105,27 +105,19 @@ For this snapshot:
 - the canonical artifact carried the higher-precision decimal `0.052083984375000725`;
 - the declared absolute tolerance was `0.1` normalized cell;
 - the divergence was non-significant within that authority;
-- the bounded scenario result was supported;
-- global equivalence was not authorized.
+- the declared `movement-left` scenario was supported under the frozen snapshot contract.
 
 The higher-precision value is preserved rather than silently rounded. It does not change the historical bounded decision.
 
 ![Scientific overview of the XCP Studio bounded validation pipeline](assets/xcp-studio-validation-overview.svg)
 
-## What this snapshot does not claim
+## Measured scope
 
-Snapshot 001 is evidence for one declared validation boundary. It does **not** establish:
+Snapshot 001 evaluates one declared `movement-left` source-to-target scenario under a frozen measurement contract.
 
-- universal source-to-target translation;
-- whole-program behavioral equivalence;
-- arbitrary executable compatibility;
-- a general-purpose transpiler for Xbox;
-- unrestricted Xbox capabilities;
-- that every current XCP capability is represented in this public repository.
+The historical motion study covered **6 of 182 hard invariant identities** and **6 of 182 perceptual invariant identities**. That measured coverage supports the declared scenario-level decision. A whole-project fidelity decision would require broader measured coverage across the remaining behaviors and invariants.
 
-Those boundaries do not make XCP smaller. They separate the product and research program from claims that have not yet been earned.
-
-Read [NON_CLAIMS.md](NON_CLAIMS.md) for the snapshot-specific interpretation rules.
+The authority of this snapshot is therefore precise: evidence for the recorded transition and scenario, under the contract and tolerance published with it.
 
 ## Verify the public evidence offline
 
@@ -137,7 +129,7 @@ python -m unittest discover -s tests -v
 python verifier/audit.py .
 ```
 
-Verification establishes integrity and internal consistency for the checked-out bytes. Authenticity still depends on obtaining the repository or release identity through a trusted channel.
+Offline verification checks the integrity and internal consistency of the checked-out evidence. Source authenticity is established separately through the trusted repository or release identity.
 
 The method, evidence contract, and immutability policy are documented in `docs/`.
 
