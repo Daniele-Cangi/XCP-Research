@@ -1,138 +1,135 @@
-# XCP Studio — Public Research Evidence
+<div align="center">
+  <img src="assets/social-preview/xcp-research-github-social-preview.png" alt="XCP Studio: AI builds, Xbox executes, XCP verifies" width="100%" />
 
-**XCP Studio is a software creation and source-to-target adaptation platform for Xbox Series hardware.**
+  # XCP Technical Showcase
 
-It supports two connected paths: creating new interactive software from an idea or prompt, and experimentally adapting authorized source software to a constrained Xbox runtime. In both cases, XCP turns the input into an editable project, builds a deterministic runtime bundle, executes the result on the target, observes what actually happened, and keeps the outcome measurable, versioned, and reversible.
+  **AI software creation, source-to-target adaptation, and measured Xbox execution.**
 
-```text
-IDEA / PROMPT / AUTHORIZED SOURCE SOFTWARE
-                    |
-                    v
-             EDITABLE XCP PROJECT
-                    |
-                    v
-          DETERMINISTIC RUNTIME BUNDLE
-                    |
-                    v
-              XBOX EXECUTION
-                    |
-          +---------+---------+
-          |                   |
-          v                   v
-   STATE / LOGS / ERRORS   FRAME CAPTURES
-          |                   |
-          +---------+---------+
-                    |
-                    v
-       COMPARE / REVISE / REPLAY / ROLLBACK
-```
+  [Website](https://xcpstudio.com/) · [Architecture & evidence](https://xcpstudio.com/architecture.html) · [Availability](https://xcpstudio.com/availability.html)
+</div>
 
-## What XCP actually does
+> [!IMPORTANT]
+> This is a public technical showcase and evidence repository, not a source distribution. It contains product documentation, public captures, aggregate measurements, and deliberately bounded evidence snapshots. XCP production code, private transformation internals, prompts, credentials, and operational interfaces are not included.
 
-XCP is not just an Xbox compute probe and not just a verification format.
+## Build it. Run it on the target. Decide from evidence.
 
-The active XCP system uses a common project contract across visual tools, IDE workflows, and external agents. It can:
+XCP turns an idea or authorized source software into an editable project, prepares a deterministic execution, runs it on real Xbox Series hardware, and returns structured evidence for the next decision.
 
-- create structured interactive software from an idea or prompt;
-- build deterministic, hash-bound project bundles;
-- install, update, activate, launch, observe, version, and roll back those bundles on Xbox;
-- expose graphics, UI, audio, state, behavior, storage, and bounded compute through one host contract;
-- return structured errors and evidence instead of treating a successful build as proof that the result is correct;
-- study **source-to-target adaptation** by taking authorized source software, producing a target representation, running it on Xbox, and comparing measured target behavior against source evidence.
+It does not stop at a successful build. The question is whether the result executed on the target, what happened there, and what the recorded evidence actually supports.
 
-That last point matters: XCP does not treat “it compiled” or “it looks similar” as source fidelity. Source adaptation is accepted only inside the evidence boundary actually measured. When the evidence is insufficient, the result stays partial or fails closed.
+\`\`\`mermaid
+flowchart LR
+    A[Idea or authorized source] --> B[XCP project]
+    B --> C[Deterministic preparation]
+    C --> D[Measured Xbox execution]
+    D --> E[Observations and captures]
+    E --> F[Evidence decision]
+    F --> G[Correct, evolve, or roll back]
+\`\`\`
 
-XCP is therefore best understood as a software creation and adaptation system with execution built into the validation loop:
+## Three public paths into one lifecycle
 
-> **build it, run it on the target, observe it, compare it, and only then decide what the result proves.**
+### Create
 
-For the broader product context, see [xcpstudio.com](https://xcpstudio.com/).
+<img src="assets/showcase/02-core-siege.webp" alt="Core Siege, an early AI-driven Xbox prototype, running on Xbox" width="100%" />
 
-## Why this repository exists
+An AI-driven, human-directed workflow created an interactive prototype from an idea and brought it to real Xbox execution. The public programme result records **28 / 28** completed blind-agent lifecycle operations across an interactive game and a utility.
 
-`XCP-Research` is the public evidence surface of XCP Studio. It is intentionally **not** a mirror of the private transformation engine or the current engineering frontier.
+The claim is not that every generated project is correct. It is that the recorded lifecycle was exercised end to end, with evidence produced while the work ran.
 
-This repository publishes selected historical evidence, verification contracts, sanitized measurements, and bounded research snapshots so that public results can be checked independently without publishing the machinery that produced the candidate target.
+### Adapt
 
-The publication rule remains:
+<img src="assets/showcase/03-minilens.webp" alt="Minilens adapted from authorized Godot 2 source and executed through XCP" width="100%" />
 
-> **publish the proof boundary, not the implementation boundary.**
+XCP can study authorized source-to-target adaptation as a measured process rather than a file conversion. A public Minilens case completed **14 / 14** lifecycle operations and **5 / 5** semantic acceptance checks on Xbox.
 
-Each snapshot declares its measured scope, evidence contract, and decision authority explicitly. The public evidence can therefore be inspected on its own terms even as the active private system continues to evolve.
+The result is a playable behavioural subset with declared degradation. Full source equivalence is not claimed. Minilens remains the work of its authors and is used here under GPL-3.0-or-later as an authorized adaptation subject.
 
-## Source-to-target validation
+### Evolve
 
-The public validation model is deliberately simple to understand:
+<img src="assets/showcase/01-studio-workspace.webp" alt="XCP Studio workspace showing one authoritative project across guided, expert, and agent workflows" width="100%" />
 
-```text
-AUTHORIZED SOURCE SOFTWARE
-          |
-          | observe
-          v
-     SOURCE EVIDENCE
-          |
-          v
-+----------------------------+
-| PRIVATE XCP TRANSFORMATION |
-+----------------------------+
-          |
-          v
-      TARGET SOFTWARE
-          |
-          | execute on target
-          v
-      TARGET EVIDENCE
-          |
-          | compare
-          v
-   BOUNDED EVIDENCE DECISION
-```
+Software changes after the first run. XCP keeps the project lifecycle explicit across later source revisions and local decisions, then verifies the result as a new version. The public programme evidence records an exact update and rollback sequence: **1.0.0 -> 1.1.0 -> 1.0.0**.
 
-The private block may evolve. The public contract is about what enters the comparison, what evidence comes back from the target, and what conclusion that evidence supports.
+The important distinction is that a rejected change can return to a known version rather than relying on a new rebuild that merely appears similar.
 
-## Snapshot 001 — measured motion preservation
+## Measured on real hardware
 
-The first public snapshot records the historical `movement-left` validation scenario from a three-scenario motion study.
+| Public evidence | Recorded result | What it supports |
+| --- | ---: | --- |
+| AI-driven creation lifecycle | **28 / 28** operations | A recorded end-to-end creation lifecycle on real hardware |
+| Authorized source adaptation | **14 / 14** operations | A measured, bounded source-to-target adaptation case |
+| Semantic acceptance | **5 / 5** checks | The declared adaptation scenario, not whole-project equivalence |
+| Version evolution | **1.0.0 -> 1.1.0 -> 1.0.0** | Exact update and rollback under the recorded lifecycle |
 
-It shows a concrete version of the XCP method: bind one source behavior and one target behavior to the same scenario, execute the target, measure both, and make a bounded decision from the observed divergence.
+These are selected programme results. Their scope, claim boundaries, and platform limits are stated on the [XCP Architecture & Evidence](https://xcpstudio.com/architecture.html) page. They are not claims of universal source fidelity, unrestricted Xbox execution, or consumer publishing.
 
-For this snapshot:
+## Operational surface
 
-- source and target observations are bound to the same scenario identity;
-- the constrained target execution completed its declared lifecycle;
-- one trajectory divergence was measured;
-- its historically reported magnitude was `0.052083984375` normalized cell;
-- the canonical artifact carried the higher-precision decimal `0.052083984375000725`;
-- the declared absolute tolerance was `0.1` normalized cell;
-- the divergence was non-significant within that authority;
-- the declared `movement-left` scenario was supported under the frozen snapshot contract.
+<img src="assets/showcase/04-studio-evidence.webp" alt="XCP Studio evidence view showing structured execution results" width="100%" />
 
-The higher-precision value is preserved rather than silently rounded. It does not change the historical bounded decision.
+XCP Studio brings project work, adaptation, evolution, target execution, and evidence into one measured workflow. The public captures show the product surface; the private implementation that produces the candidate target remains outside this repository.
 
-![Scientific overview of the XCP Studio bounded validation pipeline](assets/xcp-studio-validation-overview.svg)
+## One evidence snapshot, fully inspectable
 
-## Measured scope
+![XCP Studio bounded source-to-target validation overview](assets/xcp-studio-validation-overview.svg)
 
-Snapshot 001 evaluates one declared `movement-left` source-to-target scenario under a frozen measurement contract.
+[Snapshot 001 - measured motion preservation](snapshots/001-g2-motion-validation/README.md) is a deliberately narrow, machine-checkable historical scenario. It binds source and target observations to the same declared motion case, executes the target, measures divergence, and records a bounded decision.
 
-The historical motion study covered **6 of 182 hard invariant identities** and **6 of 182 perceptual invariant identities**. That measured coverage supports the declared scenario-level decision. A whole-project fidelity decision would require broader measured coverage across the remaining behaviors and invariants.
+Its authority is intentionally specific:
 
-The authority of this snapshot is therefore precise: evidence for the recorded transition and scenario, under the contract and tolerance published with it.
+- one declared \`movement-left\` source-to-target scenario;
+- one measured divergence within the frozen tolerance;
+- support for the stated scenario only;
+- no whole-project fidelity decision.
+
+The public repository includes the snapshot manifest, sanitized source and target summaries, differential report, schemas, tests, and an offline verifier. The proof boundary is public even though the transformation boundary is not.
 
 ## Verify the public evidence offline
 
 Python 3.11 or newer is sufficient; there are no third-party runtime dependencies.
 
-```bash
+\`\`\`bash
 python verifier/verify.py snapshots/001-g2-motion-validation
 python -m unittest discover -s tests -v
 python verifier/audit.py .
-```
+\`\`\`
 
-Offline verification checks the integrity and internal consistency of the checked-out evidence. Source authenticity is established separately through the trusted repository or release identity.
+Offline verification checks the integrity and internal consistency of the checked-out public evidence. Source authenticity is established separately through its trusted repository or release identity.
 
-The method, evidence contract, and immutability policy are documented in `docs/`.
+## Repository guide
 
-## License
+| Area | Purpose |
+| --- | --- |
+| [docs/](docs/) | Evidence model, method, and snapshot policy |
+| [snapshots/](snapshots/) | Sanitized, bounded research evidence |
+| [schemas/](schemas/) | Public evidence contracts |
+| [verifier/](verifier/) | Offline verification and audit tools |
+| [tests/](tests/) | Checks for claim boundaries and artifact integrity |
+| [DISCLOSURE.md](DISCLOSURE.md) | What this public surface does and does not publish |
 
-Original repository content is licensed under Apache License 2.0. No Minilens source, asset, trace, binary, or other third-party material is redistributed here; only factual identities and sanitized measurements are included.
+## Public boundary
+
+This repository intentionally publishes:
+
+- the XCP product thesis and conceptual lifecycle;
+- public product captures and representative outcomes;
+- selected aggregate measurements and claim boundaries;
+- sanitized, machine-readable evidence snapshots;
+- methods for independently checking the public evidence.
+
+It intentionally excludes:
+
+- application, toolchain, runtime, adapter, and infrastructure source code;
+- private transformation procedures, internal schemas, prompts, and recipes;
+- credentials, user data, project identifiers, and operational logs;
+- artifacts or parameters intended to reconstruct proprietary implementation.
+
+> **Publish the proof boundary, not the implementation boundary.**
+
+## License and contact
+
+Original repository content is licensed under [Apache License 2.0](LICENSE). No Minilens source, assets, traces, binaries, or other third-party material is redistributed here; only factual identities, public captures, and sanitized measurements are included.
+
+For the product context and contact path, visit [xcpstudio.com](https://xcpstudio.com/).
+
