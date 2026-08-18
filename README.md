@@ -66,7 +66,7 @@ These are selected programme results. Their scope, claim boundaries, and platfor
 
 ## Operational surface
 
-<img src="assets/showcase/04-studio-evidence.webp" alt="XCP Studio evidence view showing structured execution results" width="100%" />
+<img src="assets/showcase/04-studio-evidence.webp" alt="XCP public evidence snapshot showing the measured movement-left result within its declared tolerance" width="100%" />
 
 XCP Studio brings project work, adaptation, evolution, target execution, and evidence into one measured workflow. The public captures show the product surface; the private implementation that produces the candidate target remains outside this repository.
 
