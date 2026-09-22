@@ -1,31 +1,99 @@
 <div align="center">
-  <img src="assets/social-preview/xcp-research-github-social-preview.png" alt="XCP Studio: AI builds, Xbox executes, XCP verifies" width="100%" />
 
-  # XCP Technical Showcase
+# XCP
 
-  **AI software creation, source-to-target adaptation, and measured Xbox execution.**
+### Deterministic software adaptation and verified execution
 
-  [Website](https://xcpstudio.com/) · [Architecture & evidence](https://xcpstudio.com/architecture.html) · [Availability](https://xcpstudio.com/availability.html)
+**Observe source behaviour → represent meaning → lower to a bounded target → execute → measure what survived.**
+
+[Architecture](docs/ARCHITECTURE.md) · [XVM](docs/XVM.md) · [Platform model](docs/PLATFORM_MODEL.md) · [Public evidence](snapshots/) · [Website](https://xcpstudio.com/)
+
 </div>
 
+XCP is an architecture for moving software intent or observed source behaviour toward a different execution target **without treating successful execution as proof of equivalence**.
+
+Its first reference source family is **Godot**. Its first reference target is **Xbox Series through XVM**, a deterministic virtual machine designed to provide bounded programmability inside the public Xbox application sandbox.
+
+```mermaid
+flowchart LR
+    A[Source software or intent] --> B[Observe]
+    B --> C[Semantic model]
+    C --> D[Plan / lower]
+    D --> E[Admit bounded work]
+    E --> F[Execute on target]
+    F --> G[Observe target]
+    G --> H[Compare evidence]
+    H --> I[Supported claim]
+    B --> H
+```
+
+| Layer | Current reference |
+| --- | --- |
+| Source | **Godot** |
+| Semantic / adaptation | **XCP** |
+| Execution substrate | **XVM** |
+| First target | **Xbox Series** |
+| Product surface | **XCP Studio** |
+| Decision boundary | **Evidence, not successful execution alone** |
+
+> **XVM does not escape the Xbox sandbox. It creates bounded programmability inside it.**
+
 > [!IMPORTANT]
-> This is a public technical showcase and evidence repository, not a source distribution. It contains product documentation, public captures, aggregate measurements, and deliberately bounded evidence snapshots. XCP production code, private transformation internals, prompts, credentials, and operational interfaces are not included.
+> **XCP-Research is the public architecture and evidence boundary, not the production source distribution.** The current implementation continues in a private research repository while a clean open-source XCP Platform is being extracted separately.
+
+## The architecture in one sentence
+
+**Source meaning and target mechanics are separate, execution is admitted before it is trusted, and claims cannot exceed the evidence collected after execution.**
+
+Xbox, Godot, XVM, and XCP Studio are the current reference components. None of them alone defines XCP.
+
+Read the full [architecture overview](docs/ARCHITECTURE.md).
+
+## Why XVM exists
+
+XCP needed a target that could execute new, bounded work without giving the producer unrestricted authority over the Xbox host.
+
+XVM was built around that constraint.
+
+The current XVM v2 reference implementation has a small deterministic ISA with **26 opcodes**, **16 registers**, typed memory, structured control, bounded loops and calls, static worst-case fuel analysis, deterministic snapshot/resume, and CPU/GPU differential execution paths.
+
+See [docs/XVM.md](docs/XVM.md) for the architectural description and current publication boundary.
+
+## Source meaning and target mechanics are separate
+
+XCP does not assume that source and target share an engine, runtime, language, APIs, or implementation structure.
+
+A source adapter observes declared behaviour. A semantic layer makes that behaviour explicit. A target adapter determines which parts can be represented under the destination's capabilities. The resulting candidate still has to run and be measured.
+
+That separation is what makes paths such as these conceptually possible:
+
+```text
+Godot -> XCP -> Xbox/XVM
+another engine -> XCP -> Xbox/XVM
+Godot -> XCP -> another target
+```
+
+The first path is the one currently backed by public evidence in this repository. The others describe the platform boundary, not completed compatibility claims.
+
+## Execution is not fidelity
+
+XCP keeps several decisions separate:
+
+```text
+operability       Can the target execute the candidate?
+semantic fidelity Did the declared behaviour survive?
+equivalence       Is the evidence broad enough for a stronger claim?
+```
+
+A successful build or playable target does not automatically answer the second or third question.
+
+This repository exists largely to make that distinction inspectable.
 
 ## Build it. Run it on the target. Decide from evidence.
 
-XCP turns an idea or authorized source software into an editable project, prepares a deterministic execution, runs it on real Xbox Series hardware, and returns structured evidence for the next decision.
+XCP turns an idea or authorized source software into an explicit project, prepares a deterministic target candidate, runs it on real hardware, and returns structured evidence for the next decision.
 
-It does not stop at a successful build. The question is whether the result executed on the target, what happened there, and what the recorded evidence actually supports.
-
-\`\`\`mermaid
-flowchart LR
-    A[Idea or authorized source] --> B[XCP project]
-    B --> C[Deterministic preparation]
-    C --> D[Measured Xbox execution]
-    D --> E[Observations and captures]
-    E --> F[Evidence decision]
-    F --> G[Correct, evolve, or roll back]
-\`\`\`
+It does not stop at a successful build. The question is what executed on the target, what happened there, and what the recorded evidence actually supports.
 
 ## Three public paths into one lifecycle
 
@@ -62,13 +130,15 @@ The important distinction is that a rejected change can return to a known versio
 | Semantic acceptance | **5 / 5** checks | The declared adaptation scenario, not whole-project equivalence |
 | Version evolution | **1.0.0 -> 1.1.0 -> 1.0.0** | Exact update and rollback under the recorded lifecycle |
 
-These are selected programme results. Their scope, claim boundaries, and platform limits are stated on the [XCP Architecture & Evidence](https://xcpstudio.com/architecture.html) page. They are not claims of universal source fidelity, unrestricted Xbox execution, or consumer publishing.
+These are selected programme results. They are not claims of universal source fidelity, unrestricted Xbox execution, or consumer publishing.
 
 ## Operational surface
 
 <img src="assets/showcase/04-studio-evidence.webp" alt="XCP public evidence snapshot showing the measured movement-left result within its declared tolerance" width="100%" />
 
-XCP Studio brings project work, adaptation, evolution, target execution, and evidence into one measured workflow. The public captures show the product surface; the private implementation that produces the candidate target remains outside this repository.
+XCP Studio brings project work, adaptation, evolution, target execution, and evidence into one measured workflow. Studio is a product surface around XCP; it is not the platform definition.
+
+The planned platform boundary is described in [docs/PLATFORM_MODEL.md](docs/PLATFORM_MODEL.md).
 
 ## One evidence snapshot, fully inspectable
 
@@ -78,7 +148,7 @@ XCP Studio brings project work, adaptation, evolution, target execution, and evi
 
 Its authority is intentionally specific:
 
-- one declared \`movement-left\` source-to-target scenario;
+- one declared `movement-left` source-to-target scenario;
 - one measured divergence within the frozen tolerance;
 - support for the stated scenario only;
 - no whole-project fidelity decision.
@@ -89,11 +159,11 @@ The public repository includes the snapshot manifest, sanitized source and targe
 
 Python 3.11 or newer is sufficient; there are no third-party runtime dependencies.
 
-\`\`\`bash
+```bash
 python verifier/verify.py snapshots/001-g2-motion-validation
 python -m unittest discover -s tests -v
 python verifier/audit.py .
-\`\`\`
+```
 
 Offline verification checks the integrity and internal consistency of the checked-out public evidence. Source authenticity is established separately through its trusted repository or release identity.
 
@@ -101,18 +171,34 @@ Offline verification checks the integrity and internal consistency of the checke
 
 | Area | Purpose |
 | --- | --- |
-| [docs/](docs/) | Evidence model, method, and snapshot policy |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | XCP system architecture and reference-component boundaries |
+| [docs/XVM.md](docs/XVM.md) | XVM execution model and sandbox boundary |
+| [docs/PLATFORM_MODEL.md](docs/PLATFORM_MODEL.md) | Platform invariants, Studio separation, and open-source direction |
+| [docs/EVIDENCE_MODEL.md](docs/EVIDENCE_MODEL.md) | Evidence model |
+| [docs/METHOD.md](docs/METHOD.md) | Research and decision method |
+| [docs/SNAPSHOT_POLICY.md](docs/SNAPSHOT_POLICY.md) | Snapshot publication policy |
 | [snapshots/](snapshots/) | Sanitized, bounded research evidence |
 | [schemas/](schemas/) | Public evidence contracts |
 | [verifier/](verifier/) | Offline verification and audit tools |
 | [tests/](tests/) | Checks for claim boundaries and artifact integrity |
 | [DISCLOSURE.md](DISCLOSURE.md) | What this public surface does and does not publish |
 
+## Toward an open XCP Platform
+
+XCP is currently developed in a private research repository that also contains historical experiments, product branches, Xbox operational tooling, and research material that does not belong in a stable public platform.
+
+The intended open-source path is therefore **a clean platform extraction, not a visibility change on the historical repository**.
+
+The candidate public surface includes stable specifications, reference runtime components, semantic and adapter contracts, evidence contracts, conformance tooling, and minimal examples. The exact boundary will be frozen only after the current research branches are reconciled.
+
+Until then, XCP-Research remains the public architecture-and-evidence boundary.
+
 ## Public boundary
 
 This repository intentionally publishes:
 
-- the XCP product thesis and conceptual lifecycle;
+- the XCP architecture and platform thesis;
+- the architectural role of XVM and the Xbox reference target;
 - public product captures and representative outcomes;
 - selected aggregate measurements and claim boundaries;
 - sanitized, machine-readable evidence snapshots;
@@ -120,10 +206,10 @@ This repository intentionally publishes:
 
 It intentionally excludes:
 
-- application, toolchain, runtime, adapter, and infrastructure source code;
-- private transformation procedures, internal schemas, prompts, and recipes;
+- production application, toolchain, runtime, adapter, and infrastructure source code;
+- private transformation procedures, internal operational schemas, prompts, and recipes;
 - credentials, user data, project identifiers, and operational logs;
-- artifacts or parameters intended to reconstruct proprietary implementation.
+- artifacts or parameters intended to reconstruct private implementation.
 
 > **Publish the proof boundary, not the implementation boundary.**
 
@@ -132,4 +218,3 @@ It intentionally excludes:
 Original repository content is licensed under [Apache License 2.0](LICENSE). No Minilens source, assets, traces, binaries, or other third-party material is redistributed here; only factual identities, public captures, and sanitized measurements are included.
 
 For the product context and contact path, visit [xcpstudio.com](https://xcpstudio.com/).
-
