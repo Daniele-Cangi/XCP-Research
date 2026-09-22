@@ -1,37 +1,51 @@
 <div align="center">
-  <img src="assets/social-preview/xcp-research-github-social-preview.png" alt="XCP Studio: AI builds, Xbox executes, XCP verifies" width="100%" />
 
-  # XCP Technical Showcase
+# XCP
 
-  **Deterministic software adaptation, bounded target execution, and evidence-driven verification.**
+### Deterministic software adaptation and verified execution
 
-  [Website](https://xcpstudio.com/) · [Architecture](docs/ARCHITECTURE.md) · [XVM](docs/XVM.md) · [Platform model](docs/PLATFORM_MODEL.md)
+**Observe source behaviour → represent meaning → lower to a bounded target → execute → measure what survived.**
+
+[Architecture](docs/ARCHITECTURE.md) · [XVM](docs/XVM.md) · [Platform model](docs/PLATFORM_MODEL.md) · [Public evidence](snapshots/) · [Website](https://xcpstudio.com/)
+
 </div>
 
-> [!IMPORTANT]
-> This is the public architecture and evidence repository for XCP, not the production source distribution. It contains product documentation, public captures, aggregate measurements, sanitized evidence snapshots, and offline verification tools. XCP production code, private transformation internals, credentials, prompts, and operational interfaces are not included.
+XCP is an architecture for moving software intent or observed source behaviour toward a different execution target **without treating successful execution as proof of equivalence**.
 
-## What XCP is
-
-XCP is a deterministic software adaptation and execution architecture.
-
-It separates software intent from target execution, admits bounded work before running it, and measures what survived instead of assuming that successful execution means equivalence.
-
-Its first reference target is **Xbox Series through XVM**, a bounded virtual machine designed to operate inside the public Xbox application sandbox. Its first reference source family is **Godot**.
+Its first reference source family is **Godot**. Its first reference target is **Xbox Series through XVM**, a deterministic virtual machine designed to provide bounded programmability inside the public Xbox application sandbox.
 
 ```mermaid
 flowchart LR
-    A[Source software or intent] --> B[Observation]
-    B --> C[Semantic representation]
-    C --> D[Capability planning / lowering]
-    D --> E[Bounded target execution]
-    E --> F[Target observation]
-    F --> G[Differential evidence]
-    G --> H[Supported claim]
-    B --> G
+    A[Source software or intent] --> B[Observe]
+    B --> C[Semantic model]
+    C --> D[Plan / lower]
+    D --> E[Admit bounded work]
+    E --> F[Execute on target]
+    F --> G[Observe target]
+    G --> H[Compare evidence]
+    H --> I[Supported claim]
+    B --> H
 ```
 
-Xbox, Godot, XVM, and XCP Studio are current reference components. They are not the definition of the architecture.
+| Layer | Current reference |
+| --- | --- |
+| Source | **Godot** |
+| Semantic / adaptation | **XCP** |
+| Execution substrate | **XVM** |
+| First target | **Xbox Series** |
+| Product surface | **XCP Studio** |
+| Decision boundary | **Evidence, not successful execution alone** |
+
+> **XVM does not escape the Xbox sandbox. It creates bounded programmability inside it.**
+
+> [!IMPORTANT]
+> **XCP-Research is the public architecture and evidence boundary, not the production source distribution.** The current implementation continues in a private research repository while a clean open-source XCP Platform is being extracted separately.
+
+## The architecture in one sentence
+
+**Source meaning and target mechanics are separate, execution is admitted before it is trusted, and claims cannot exceed the evidence collected after execution.**
+
+Xbox, Godot, XVM, and XCP Studio are the current reference components. None of them alone defines XCP.
 
 Read the full [architecture overview](docs/ARCHITECTURE.md).
 
