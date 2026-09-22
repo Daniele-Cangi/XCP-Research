@@ -8,6 +8,10 @@
 
 [Architecture](docs/ARCHITECTURE.md) · [XVM](docs/XVM.md) · [Platform model](docs/PLATFORM_MODEL.md) · [Public evidence](snapshots/) · [Website](https://xcpstudio.com/)
 
+<br />
+
+<img src="assets/social-preview/xcp-research-github-social-preview.png" alt="XCP Studio: AI builds, Xbox executes, XCP verifies" width="68%" />
+
 </div>
 
 XCP is an architecture for moving software intent or observed source behaviour toward a different execution target **without treating successful execution as proof of equivalence**.
