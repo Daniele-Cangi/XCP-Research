@@ -57,8 +57,6 @@ XVM was built around that constraint.
 
 The current XVM v2 reference implementation has a small deterministic ISA with **26 opcodes**, **16 registers**, typed memory, structured control, bounded loops and calls, static worst-case fuel analysis, deterministic snapshot/resume, and CPU/GPU differential execution paths.
 
-> **XVM does not escape the Xbox sandbox. It creates bounded programmability inside it.**
-
 See [docs/XVM.md](docs/XVM.md) for the architectural description and current publication boundary.
 
 ## Source meaning and target mechanics are separate
