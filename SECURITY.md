@@ -8,6 +8,6 @@ Run the publication audit before proposing a release:
 python verifier/audit.py .
 ```
 
-The audit rejects symlinks, non-text files, local paths, IP addresses, credential-shaped assignments, authorization headers, pairing values, and key or certificate blocks. This is a narrow automated guard, not a substitute for human disclosure review.
+The audit rejects symlinks, unregistered non-text files, local paths, IP addresses, credential-shaped assignments, authorization headers, pairing values, and key or certificate blocks. The five public WebP/PNG captures under `assets/showcase/` and `assets/social-preview/` are accepted only when their paths, byte counts, SHA-256 digests, and Git blob identities match the exact allowlist in `verifier/audit.py`. Missing or altered captures and any other binary file fail the audit. This is a narrow automated guard, not a substitute for human disclosure review.
 
 When reporting a vulnerability, do not attach private evidence, credentials, raw traces, proprietary assets, or device details. Describe the issue using the smallest synthetic reproducer possible.
