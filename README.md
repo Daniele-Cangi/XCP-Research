@@ -10,7 +10,7 @@
 
 <br />
 
-<img src="assets/social-preview/xcp-research-github-social-preview.png" alt="XCP Studio: AI builds, Xbox executes, XCP verifies" width="100%" />
+<img src="assets/social-preview/xcp-research-github-social-preview.png" alt="XCP Studio: AI builds, Xbox executes, XCP verifies" width="80%" />
 
 </div>
 
